@@ -1,0 +1,201 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.Movie {
+    margin: 23px 43px;
+}
+
+.Movie h4 {
+    text-align: center;
+}
+
+.Movie header {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+    background-color: #EA8DEC;
+    padding: 15px;
+}
+
+.Movie header .image-box {
+    background-color: rgb(88, 87, 87);
+    border-radius: 15px;
+    width: 82px;
+    height: 82px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Movie header .image-box i {
+    font-size: 36px;
+    color: white;
+}
+
+.Movie .file-box {
+    background-color: rgb(88, 87, 87);
+    width: 69px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Movie .file-box i {
+    color: white;
+}
+
+.Movie header h2 {
+    font-weight: bold;
+}
+
+.Movie section>main {
+    background-color: #FFFFFF;
+    padding: 23px;
+    margin-bottom: 23px;
+}
+
+.Movie .section1 .secondary-color {
+    background-color: rgb(158, 33, 170);
+    width: 100% !important;
+    padding: 15px;
+}
+
+.Movie .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.Movie label {
+    color: black;
+}
+
+.Movie .name label {
+    font-weight: 600;
+    color: black;
+}
+
+.Movie section .select-container {
+    margin-bottom: 60px;
+}
+
+.Movie .section .select-container h4 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+    font-weight: 800 !important;
+    font-size: 28px !important;
+    background-color: transparent !important;
+    color: gray !important;
+    padding: 19px 60px !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.melody.Mui-selected {
+    background-color: #18FFFF !important;
+    color: black !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.drums.Mui-selected {
+    background-color: #F39C12 !important;
+    color: black !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.chords.Mui-selected {
+    background-color: #3498DB !important;
+    color: black !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.bass.Mui-selected {
+    background-color: #CB4335 !important;
+    color: black !important;
+}
+
+.Movie .css-19kzrtu .melody {
+    border-top: 10px solid #18FFFF;
+    margin-left: -24px !important;
+    padding-top: 19px;
+}
+
+.Movie .css-19kzrtu .drumsRow {
+    border-top: 10px solid #F39C12 !important;
+    margin-left: 0px;
+    margin-left: -24px !important;
+    padding-top: 19px;
+}
+
+.Movie .css-19kzrtu .chords {
+    border-top: 10px solid #3498DB !important;
+    margin-left: 0px;
+    margin-left: -24px !important;
+    padding-top: 19px;
+}
+
+.Movie .css-19kzrtu .bass {
+    border-top: 10px solid #CB4335 !important;
+    margin-left: 0px;
+    margin-left: -24px !important;
+    padding-top: 19px;
+}
+
+.css-1kt0o6l {
+    border-bottom: none !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+    height: 0px !important;
+}
+
+.css-19kzrtu {
+    padding-top: 0px !important;
+    background-color: white !important;
+}
+
+.css-19kzrtu h4 {
+    font-weight: 600;
+    font-size: 21px;
+    color: gray;
+}
+
+.css-19kzrtu .col-md-4 {
+    align-self: center !important;
+}
+.css-1aznpnh-MuiSlider-root {
+    color: rgb(95, 94, 94) !important;
+}
+.css-14pt78w-MuiSlider-rail {
+    height: 10px !important;
+}
+.css-1gv0vcd-MuiSlider-track {
+    height: 10px !important;
+}
+
+.Movie .file-box-container {
+    display: flex;
+    gap: 10px;
+}
+.Movie .section3 {
+    background-color: #2ECC71;
+    text-align: center;
+    margin-top: 23px;
+    padding: 15px;
+}
