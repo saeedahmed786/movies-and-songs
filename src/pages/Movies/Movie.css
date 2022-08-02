@@ -180,15 +180,15 @@
     align-self: center !important;
 }
 
-.css-1aznpnh-MuiSlider-root {
+.MuiSlider-root {
     color: rgb(95, 94, 94) !important;
 }
 
-.css-14pt78w-MuiSlider-rail {
+.MuiSlider-rail {
     height: 10px !important;
 }
 
-.css-1gv0vcd-MuiSlider-track {
+.MuiSlider-track {
     height: 10px !important;
 }
 

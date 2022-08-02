@@ -13,11 +13,11 @@ code {
     monospace;
 }
 
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+.MuiInputBase-formControl {
   border-radius: 0px !important;
 }
 
-.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+.MuiInputLabel-formControl {
   background-color: white !important;
 }
 
