@@ -102,7 +102,7 @@
     margin-bottom: 15px;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+.MuiTab-textColorPrimary {
     font-weight: 800 !important;
     font-size: 28px !important;
     background-color: transparent !important;
@@ -110,22 +110,22 @@
     padding: 19px 60px !important;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.melody.Mui-selected {
+.MuiTab-textColorPrimary.melody.Mui-selected {
     background-color: #18FFFF !important;
     color: black !important;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.drums.Mui-selected {
+.MuiTab-textColorPrimary.drums.Mui-selected {
     background-color: #F39C12 !important;
     color: black !important;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.chords.Mui-selected {
+.MuiTab-textColorPrimary.chords.Mui-selected {
     background-color: #3498DB !important;
     color: black !important;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.bass.Mui-selected {
+.MuiTab-textColorPrimary.bass.Mui-selected {
     background-color: #CB4335 !important;
     color: black !important;
 }
