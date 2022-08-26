@@ -3,8 +3,13 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import "./Song.css"
+import axios from 'axios';
+import swal from 'sweetalert';
 
 export const Song = () => {
+  const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
+  const [mainFile, setMainFile] = useState("");
   const [mainCategory, setMainCategory] = useState("Category 1");
   const [mainRank, setMainRank] = useState("Rank 1");
   const [mainTags, setMainTags] = useState([]);
@@ -12,9 +17,9 @@ export const Song = () => {
   const [mainScale, setMainScale] = useState("Scale 1");
   const [mainTempo, setMainTempo] = useState("Tempo 1");
   const [mainLength, setMainLength] = useState("Length 1");
-  const [melodyTract, setMelodyTract] = useState("Track 1");
+  const [melodyTract, setMelodyTract] = useState(20);
   const [melodyTags, setMelodyTags] = useState([]);
-  const [melodyFile, setMelodyFile] = useState("Category 1");
+  const [melodyFile, setMelodyFile] = useState("");
   const [melodyLength, setMelodyLength] = useState("Category 1");
   const [melodyKey, setMelodyKey] = useState("Key 1");
   const [melodyScale, setMelodyScale] = useState("Scale 1");
@@ -22,18 +27,18 @@ export const Song = () => {
   const [melodyLowNote, setMelodyLowNote] = useState("Low 1");
   const [melodyResolution, setMelodyResolution] = useState("Resolution 1");
   const [melodyCopy, setMelodyCopy] = useState("Copy 1");
-  const [drumTrack, setDrumTrack] = useState("Track 1");
-  const [drumFile, setDrumFile] = useState("Category 1");
+  const [drumTrack, setDrumTrack] = useState(20);
+  const [drumFile, setDrumFile] = useState("");
   const [drumLength, setDrumLength] = useState("Category 1");
   const [drumOctave, setDrumOctave] = useState("Octave 1");
   const [drumTags, setDrumTags] = useState([]);
-  const [chordTrack, setChordTrack] = useState("Track 1");
-  const [chordFile, setChordFile] = useState("Category 1");
+  const [chordTrack, setChordTrack] = useState(20);
+  const [chordFile, setChordFile] = useState("");
   const [chordLength, setChordLength] = useState("Category 1");
   const [chordOctave, setChordOctave] = useState("Octave 1");
   const [chordTags, setChordTags] = useState([]);
-  const [bassTrack, setBassTrack] = useState("Track 1");
-  const [bassFile, setBassFile] = useState("Category 1");
+  const [bassTrack, setBassTrack] = useState(20);
+  const [bassFile, setBassFile] = useState("");
   const [bassLength, setBassLength] = useState("Category 1");
   const [bassOctave, setBassOctave] = useState("Octave 1");
   const [bassTags, setBassTags] = useState([]);
@@ -137,10 +142,12 @@ export const Song = () => {
 
   function valuetext(value) {
     return `${value}%`;
-    // console.log(value)
   }
 
   const jsonData = {
+    title: title,
+    artist: artist,
+    mainFile: mainFile,
     mainCategory: mainCategory,
     mainRank: mainRank,
     mainKey: mainKey,
@@ -148,9 +155,8 @@ export const Song = () => {
     mainTempo: mainTempo,
     mainLength: mainLength,
     melodyFile: melodyFile,
-    melodyTract: melodyFile,
     melodyLength: melodyLength,
-    melodyTract: melodyTract,
+    melodyTract: melodyTract && melodyTract.toString(),
     melodyTags: melodyTags,
     melodyKey: melodyKey,
     melodyScale: melodyScale,
@@ -175,16 +181,39 @@ export const Song = () => {
     bassTags: bassTags
   }
 
+  const submitData = async () => {
+    await axios.post("https://music-creator-app-db.herokuapp.com/parse/classes/Song", jsonData, {
+      headers: {
+        "X-Parse-Application-Id": "music-app_id"
+      }
+    }).then(res => {
+      if (res.status === 201) {
+        swal("success", "Data added successfully", "success");
+      }
+    })
+  }
   return (
     <div className='Song'>
       <section className='section1'>
         <header>
           <div className='image-box'>
-            <i className="fa-solid fa-camera-retro"></i>
+            {
+              mainFile ?
+                <img className="profileImage" src={mainFile !== '' ? URL.createObjectURL(mainFile) : ''} alt="" width="80" height="80" />
+                :
+                <>
+                  <input id="actual-btn" type="file" name='file' hidden onChange={(e) => setMainFile(e.target.files[0])} />
+                  <label for="actual-btn" className='px-4'><i className="fa-solid fa-camera-retro"></i></label>
+                </>
+            }
+
           </div>
           <div>
-            <h2>Song Name</h2>
-            <h4 className='text-start'>Artist</h4>
+            <div className='w-50'>
+              <TextField onChange={(e) => setTitle(e.target.value)} placeholder="Song Name" className='movieName' />
+              <br />
+              <TextField onChange={(e) => setArtist(e.target.value)} placeholder="Artist" className='artist' />
+            </div>
           </div>
         </header>
         <main>
@@ -355,7 +384,7 @@ export const Song = () => {
                 aria-label="Custom marks"
                 getAriaValueText={valuetext}
                 value={melodyTract}
-                step={10}
+                step={1}
                 valueLabelDisplay="auto"
                 marks={marks}
                 onChange={(e) => setMelodyTract(e.target.value)}
@@ -393,24 +422,11 @@ export const Song = () => {
               <h4>Current Midi File</h4>
               <div className='file-box-container'>
                 <div className='file-box'>
-                  <i className="fa-solid fa-upload"></i>
+                  <input id="actual-btn" type="file" name='file' hidden onChange={(e) => setMelodyFile(e.target.files[0])} />
+                  <label for="actual-btn" className='px-4'><i className="fa-solid fa-upload"></i></label>
                 </div>
                 <div className='w-100'>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Category</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={melodyFile}
-                      label="Age"
-                      onChange={(e) => setMelodyFile(e.target.value)}
-                    >
-                      <MenuItem value={"Category 1"}>Category 1</MenuItem>
-                      <MenuItem value={"Category 2"}>Category 2</MenuItem>
-                      <MenuItem value={"Category 3"}>Category 3</MenuItem>
-                      <MenuItem value={"Category 4"}>Category 4</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <TextField label="File" value={melodyFile && melodyFile.name} />
                 </div>
               </div>
             </div>
@@ -588,7 +604,7 @@ export const Song = () => {
               <Slider
                 aria-label="Custom marks"
                 getAriaValueText={valuetext}
-                step={10}
+                step={1}
                 value={drumTrack}
                 valueLabelDisplay="auto"
                 marks={marks}
@@ -625,26 +641,13 @@ export const Song = () => {
             </div>
             <div className='col-md-4 select-container'>
               <h4>Current Midi File</h4>
-              <div className='d-flex gap-2 align-items-center'>
+              <div className='file-box-container'>
                 <div className='file-box'>
-                  <i className="fa-solid fa-upload"></i>
+                  <input id="actual-btn" type="file" name='file' hidden onChange={(e) => setDrumFile(e.target.files[0])} />
+                  <label for="actual-btn" className='px-4'><i className="fa-solid fa-upload"></i></label>
                 </div>
                 <div className='w-100'>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Category</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={drumFile}
-                      label="Age"
-                      onChange={(e) => setDrumFile(e.target.value)}
-                    >
-                      <MenuItem value={"Category 1"}>Category 1</MenuItem>
-                      <MenuItem value={"Category 2"}>Category 2</MenuItem>
-                      <MenuItem value={"Category 3"}>Category 3</MenuItem>
-                      <MenuItem value={"Category 4"}>Category 4</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <TextField label="File" value={drumFile && drumFile.name} />
                 </div>
               </div>
             </div>
@@ -701,7 +704,7 @@ export const Song = () => {
               <Slider
                 aria-label="Custom marks"
                 getAriaValueText={valuetext}
-                step={10}
+                step={1}
                 valueLabelDisplay="auto"
                 value={chordTrack}
                 marks={marks}
@@ -740,24 +743,11 @@ export const Song = () => {
               <h4>Current Midi File</h4>
               <div className='file-box-container'>
                 <div className='file-box'>
-                  <i className="fa-solid fa-upload"></i>
+                  <input id="actual-btn" type="file" name='file' hidden onChange={(e) => setChordFile(e.target.files[0])} />
+                  <label for="actual-btn" className='px-4'><i className="fa-solid fa-upload"></i></label>
                 </div>
                 <div className='w-100'>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Category</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={chordFile}
-                      label="Age"
-                      onChange={(e) => setChordFile(e.target.value)}
-                    >
-                      <MenuItem value={"Category 1"}>Category 1</MenuItem>
-                      <MenuItem value={"Category 2"}>Category 2</MenuItem>
-                      <MenuItem value={"Category 3"}>Category 3</MenuItem>
-                      <MenuItem value={"Category 4"}>Category 4</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <TextField label="File" value={chordFile && chordFile.name} />
                 </div>
               </div>
             </div>
@@ -814,7 +804,7 @@ export const Song = () => {
               <Slider
                 aria-label="Custom marks"
                 getAriaValueText={valuetext}
-                step={10}
+                step={1}
                 valueLabelDisplay="auto"
                 marks={marks}
                 onChange={(e) => setBassTrack(e.target.value)}
@@ -852,24 +842,11 @@ export const Song = () => {
               <h4>Current Midi File</h4>
               <div className='file-box-container'>
                 <div className='file-box'>
-                  <i className="fa-solid fa-upload"></i>
+                  <input id="actual-btn" type="file" name='file' hidden onChange={(e) => setBassFile(e.target.files[0])} />
+                  <label for="actual-btn" className='px-4'><i className="fa-solid fa-upload"></i></label>
                 </div>
                 <div className='w-100'>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Category</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={bassFile}
-                      label="Age"
-                      onChange={(e) => setBassFile(e.target.value)}
-                    >
-                      <MenuItem value={"Category 1"}>Category 1</MenuItem>
-                      <MenuItem value={"Category 2"}>Category 2</MenuItem>
-                      <MenuItem value={"Category 3"}>Category 3</MenuItem>
-                      <MenuItem value={"Category 4"}>Category 4</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <TextField label="File" value={bassFile && bassFile.name} />
                 </div>
               </div>
             </div>
@@ -929,6 +906,12 @@ export const Song = () => {
           >
             {`Download Json`}
           </a>
+          <br />
+          <Button className='w-100 mt-4' variant='contained'
+            onClick={submitData}
+          >
+            Submit
+          </Button>
         </div>
       </section>
       <section className='section3'>

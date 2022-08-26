@@ -24,3 +24,25 @@ code {
 .MuiTabs-indicator {
   display: none !important;
 }
+
+.movieName input,
+.movieName input::placeholder {
+  font-size: 32px !important;
+  color: black !important;
+  opacity: 1 !important;
+  font-weight: bold;
+  padding: 0px !important;
+}
+
+.movieName fieldset,
+.artist fieldset {
+  border: 0px !important;
+}
+
+.artist input::placeholder,
+.artist input {
+  font-size: 23px !important;
+  color: black !important;
+  opacity: 1 !important;
+  padding: 0px !important;
+}
